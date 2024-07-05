@@ -1,0 +1,22 @@
+name: Build Status
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build-backend:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: install pnpm
+        run: npm i -g pnpm
+
+      - name: backend - install dependencies
+        run: pnpm install
+
+      - name: backend - build app
+        run: pnpm build
